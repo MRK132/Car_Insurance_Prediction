@@ -73,8 +73,13 @@ class Prediction(Resource):
         for feature in feature_list:
             parser.add_argument(feature)
 
+        parser.add_argument('Customer_ID') # add customer id to args
+        parser.add_argument('Actual') # add actual label to args
 
         args = parser.parse_args() # dictionary of args
+
+        cust_id = args.pop('Customer_ID') #remove and store before making prediction
+        actual_label = args.pop('Actual')
 
 
         np_array = np.fromiter(args.values(), dtype=float)  # convert to np array
@@ -88,8 +93,11 @@ class Prediction(Resource):
 
         prediction = trained_model.predict(df)
         prediction = dict(enumerate(prediction.flatten(), 1)) #reshape prediction, into json compatible dictionary format
-        prediction[1] = int(prediction[1]) # prediction needs to be of type int for json, not float
-        out = {'Prediction': prediction}
+        prediction[1] = int(prediction[1]) # prediction needs to be of type int for json, not int64
+        out = {
+            'Customer ID:' : cust_id,
+            'Prediction': prediction[1],
+            'Actual': actual_label}
 
 
         return out, 200
