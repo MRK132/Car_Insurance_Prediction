@@ -45,8 +45,11 @@ feature_list = [
   'Outcome_other',
   'Outcome_success',
   'Outcome_nan',
-  'Call_duration ',
-  'Period_of_day_call',
+  'Call_duration',
+  'Period_of_day_call_12am-3pm',
+  'Period_of_day_call_3pm-6pm',
+  'Period_of_day_call_6am-9am',
+  'Period_of_day_call_9am-12am',
   'Marital_divorced',
   'Marital_married',
   'Marital_single',
@@ -83,7 +86,7 @@ class Prediction(Resource):
 
 
         np_array = np.fromiter(args.values(), dtype=float)  # convert to np array
-        np_array = np.array(np_array).reshape(1,46)  # reshape to correct format
+        np_array = np.array(np_array).reshape(1,49)  # reshape to correct format
         df = pd.DataFrame(np_array, columns = feature_list)  # convert to dataframe
 
         def get_model():
