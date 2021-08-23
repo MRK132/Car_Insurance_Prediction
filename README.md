@@ -9,3 +9,27 @@ In the first section of this notebook we will perform EDA,  pre-processing and s
 In the final segment of the notebook, we can make a call to the Flask API serving the persisted trained model via Google Cloud Run, in order to make a prediction on a sample from the test set. To summarise the steps here, a Docker container is created and deployed via Cloud Run, with the code to continuously run and serve the Flask-RESTful API. Following the 'Deployment' segment of Car_Insurance_Prediction.ipynb will allow a user to test out the API. The Cloud Run environment has the same files that are present in the  [Car_Insurance_Prediction/Deployment](https://github.com/MRK132/Car_Insurance_Prediction/tree/master/Deployment) directory here on GitHub.
 
 ![img](Cloud_Run_environment.JPG)
+
+## Test Deployment with Docker:
+
+If you have Docker installed on your machine, feel free to skip the above  notebook and quickly build and test the application using the Dockerfile provided.
+
+This only involves:
+
+1. Cloning the repo
+
+2. Navigating to the repo 
+
+3. Building a docker image from the Dockerfile: 
+
+   ```
+   docker build -t prediction .
+   ```
+
+4. Running the container: 
+
+   ```
+   docker run prediction
+   ```
+
+![img](api_prediction.JPG)

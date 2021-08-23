@@ -50,7 +50,7 @@ def preprocess(df):
         duration = end-start
         call_duration.append(duration)
 
-    df['Call_duration '] = call_duration
+    df['Call_duration'] = call_duration
     df['Start_call_secs'] = start_secs
 
     time=df['Start_call_secs']
